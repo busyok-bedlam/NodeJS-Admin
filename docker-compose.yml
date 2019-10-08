@@ -1,0 +1,23 @@
+version: "3"
+services:
+  express:
+    container_name: express-service
+    restart: always
+    build: ./express-service
+    volumes:
+      - .:/app/express
+    working_dir: /app/express
+    command: npm start
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo-cont
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+
+
+

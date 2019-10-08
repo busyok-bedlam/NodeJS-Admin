@@ -1,0 +1,16 @@
+{
+  "name": "docker-compose-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect=0.0.0.0 index.js"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "mongoose": "5.6.9"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
