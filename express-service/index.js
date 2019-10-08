@@ -24,6 +24,12 @@ app.get('/', async (req, res) => {
   const data = await Item.find({});
   res.send(data)
 })
+app.get('/add-item', async (req,res) => {
+  const data = await new Item({name: "Bulat"}).save();
+  res.json({
+	data: "Success"
+  })
+})
 app.listen(8080, () => {
   console.log('XXX')
 })
