@@ -11,12 +11,25 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', async (req, res) => {
-  const data = await Item.find({});
-  res.send(data)
+  try {
+    const data = await Item.find({});
+    res.send(data.toObject())
+  }
+  catch(err) {
+    res.status(404).json({
+      err: err.message
+    })
+  }
+
 })
-app.get('/a', (req, res) => {
+app.get('/aaaa', (req, res) => {
   return nextApp.render(req, res, '/a', req.query)
+});
+
+app.get('/login', (req,res) => {
+  return nextApp.render(req,res, '/login')
 })
+
 app.get('/add-item', async (req,res) => {
   const data = await new Item({name: "Bulat"}).save();
   res.json({
