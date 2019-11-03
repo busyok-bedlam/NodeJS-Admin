@@ -3,7 +3,9 @@ const LocalStrategy = require('passport-local').Strategy;
 module.exports = passport => {
   passport.use(new LocalStrategy(
     function(username, password, done) {
-      return done(null, {username, password})
+      console.log(username, password)
+
+      return done(null, {username, password});
       // Item.findOne({ username: username }, function (err, user) {
       //   if (err) { return done(err); }
       //   if (!user) {
@@ -20,7 +22,9 @@ module.exports = passport => {
   passport.serializeUser(function(user, done) {
     done(null, user);
   });
-  
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });  
   // passport.deserializeUser(function(id, done) {
   //   User.findById(id, function(err, user) {
   //     done(err, user);

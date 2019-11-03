@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const Item = require('../db/models/item');
+const User = require('../db/models/user');
 
 const router = Router();
 
@@ -13,15 +14,29 @@ router.get('/', async (req, res) => {
             err: err.message
         })
     }
-
 })
 
 
-router.get('/add-item', async (req, res) => {
-    await new Item({ name: "Bulat" }).save();
+router.post('/add-item', async (req, res) => {
+    const { name } = req.body;
+    const item = await new Item({ name }).save();
     res.json({
-        data: "Success"
+        item,
+        success: true
     })
 })
+
+router.post('/add-user', async (req,res) => {
+    const { email, login, password} = req.body;
+    const user = await new User({
+        login,
+        password,
+        email
+    });
+    res.json({
+        user,
+        success: true
+    })
+});
 
 module.exports = router;

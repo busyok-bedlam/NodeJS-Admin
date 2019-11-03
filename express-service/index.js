@@ -19,16 +19,12 @@ server.use(session({ secret: 'keyboard cat' }));
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
-server.get('/', (req,res) => {
 
-});
-
-server.get('/login', passport.authenticate('local', {
+server.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureMessage: '/login',
   failureFlash: true
 }),(req,res) => {
-  console.log(req.params)
 })
 // server.use('/api', apiRouter);
 // pageRouter(server, app);

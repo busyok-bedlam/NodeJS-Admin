@@ -5,8 +5,8 @@ services:
     restart: always
     build: ./express-service
     volumes:
-      - .:/app/express
-    working_dir: /app/express
+      - ./express-service:/app/express-service
+    working_dir: /app/express-service
     command: npm start
     ports:
       - "3000:3000"
